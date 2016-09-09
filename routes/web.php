@@ -21,6 +21,11 @@ Route::get('/add-to-cart/{id}', [
 	'as'   => 'product.addToCart'
 ]);
 
+Route::get('/shopping-cart', [
+	'uses' => 'ProductsController@getShoppingCart',
+	'as'   => 'shop.shoppingCart'
+]);
+
 Route::group(['prefix' => 'user'],function(){
 	Route::group(['middleware' =>'guest'],function(){
 		Route::get('/signup', [
