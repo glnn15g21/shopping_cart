@@ -35,4 +35,13 @@ class ProductsController extends Controller
 		return view('shop.shopping_cart',['products'=>$cart->items, 'totalPrice'=> $cart->totalPrice]);
 	}
     
+    public function getCheckout(){
+    	if (!Session::has('cart')){
+			return view ('shop.shopping_cart');
+		}
+		$oldcart = Session::get('cart');
+		$cart = new Cart($oldcart);
+		$total = $cart->totalPrice;
+		return view('shop.checkout',['total' => $total]);
+    }
 }
